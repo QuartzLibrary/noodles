@@ -106,6 +106,12 @@ impl TryFrom<&[u8]> for Record {
     }
 }
 
+impl AsRef<str> for Record {
+    fn as_ref(&self) -> &str {
+        self.0.buf.as_ref()
+    }
+}
+
 impl crate::variant::Record for Record {
     fn reference_sequence_name<'a, 'h: 'a>(&'a self, _: &'h Header) -> io::Result<&'a str> {
         Ok(self.reference_sequence_name())
